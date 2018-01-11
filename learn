@@ -1,0 +1,102 @@
+pin = [1234]
+def ubah_sandi():
+    try:
+        sandi_baru = int(input("Masukkan sandi baru :"))
+        pin[0]=sandi_baru
+        print("Kata Sandi Berhasil diubah")
+        print(pin[0])
+        start_menu()
+    except:
+        print("TypeError")
+        return ubah_sandi()
+
+def log_in():
+
+    tries = 0
+    while tries < 4:
+        login = int(input('Masukkan 4 Digit Pin Anda : '))
+        if login==pin[0]:
+            print("\n","\t","---Selamat Datang---","\n")
+            return True
+        else:
+            print("PIN yang anda masukkan salah")
+            tries += 1
+    print("Kartu Anda Terblokir")
+    return False
+
+def menu():
+    saldo= [200000]
+    rekening= 1231292837237
+    print("\t","1. Penarikan Tunai","\n",
+          "\t","2. Info Saldo","\n",
+          "\t","3. Info Rekening","\n",
+          "\t","4. Lainnya","\n",
+          "\t","5. Keluar","\n")
+    pilihan = int(input("Masukkan Pilihan Menu :"))
+    if (pilihan == 1):
+        tarik = int(input("Masukkan Jumlah Nominal :"))
+        saldo[0]=saldo[0]-tarik
+        print("\n","Penarikan anda sebesar :", tarik)
+        print("\n","Sisa saldo anda sebesar :", saldo[0])
+        return asktransaction()
+
+    elif(pilihan==2):
+        print("sisa saldo anda sebesar :", saldo[0])
+        return asktransaction()
+
+    elif(pilihan==3):
+        print("Nomor Rekening anda :", rekening)
+        return asktransaction()
+
+    elif(pilihan==4):
+        print("1. Ubah kata sandi","\n","2. tentang BNI","\n","3. call center","\n")
+        pilihan4=int(input("Masukkan Pilihan :"))
+
+        if(pilihan4==1):
+           if ubah_sandi():
+                start_menu()
+
+        elif(pilihan4==2):
+            print("BNI adalah kepanjangan dari Bank Negara Indonesia","\n","Didirikan tahun 1915 di jayakarta")
+
+        elif(pilihan4==3):
+            print("Call center BNI : 569382")
+
+        else:
+            return menu()
+    else:
+        print("\n","Terima Kasih Sudah Melakukan Transaksi")
+
+
+def asktransaction():
+    print("\n")
+    t = input("Lakukan Transaksi Lagi ? (y/n)")
+    if t == 'y':
+        menu()
+    elif t == 'n':
+        print("Bye")
+    else:
+        print("Terima Kasih")
+
+def start_menu():
+    if log_in():
+        menu()
+start_menu()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
